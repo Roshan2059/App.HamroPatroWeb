@@ -13,7 +13,7 @@ test("click Hamro Pay test", async ({ page }) => {
   await page.close();
 });
 
-test.only("click Historical fiction test", async ({ page }) => {
+test("click Historical fiction test", async ({ page }) => {
   await page.goto(
     "https://mart.hamropatro.com/"
   );
