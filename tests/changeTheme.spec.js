@@ -4,7 +4,7 @@ test('verify color change from * after theme toggle', async ({ page }) => {
   await page.goto('https://app.hamropatro.com/');
   await page.waitForLoadState('load');
 
-    await page.pause();
+    // await page.pause();
   // Get initial color from html (inherits from * selector)
   const initialColor = await page.locator('html').evaluate(
     (el) => window.getComputedStyle(el).backgroundColor
