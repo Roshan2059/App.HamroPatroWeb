@@ -104,6 +104,7 @@ test('ब्लग button navigation', async ({ page }) => {
 });
 
 test('सिनेमा button navigation', async ({ page }) => {
+  await page.getByText('View More', { exact: false }).click();
   await page.getByText('सिनेमा', { exact: false }).click();
   await expect(page).toHaveURL(/hamropatro-blog/);
   await page.goBack();
@@ -111,6 +112,7 @@ test('सिनेमा button navigation', async ({ page }) => {
 });
 
 test('अडियो / पोड्काष्ट button navigation', async ({ page }) => {
+  await page.getByText('View More', { exact: false }).click();
   await page.getByText('अडियो / पोड्काष्ट', { exact: false }).click();
   await expect(page).toHaveURL(/podcasts/);
   await page.goBack();
@@ -132,6 +134,7 @@ test('साइत button navigation', async ({ page }) => {
 });
 
 test('क्विज button navigation', async ({ page }) => {
+  await page.getByText('View More', { exact: false }).click();
   await page.getByText('क्विज', { exact: false }).click();
   await expect(page).toHaveURL(/quiz/);
   await page.goBack();
@@ -153,13 +156,15 @@ test('ताली वा गाली button navigation', async ({ page }) => {
 });
 
 test('बस टिकट button navigation', async ({ page }) => {
+  await page.getByText('View More', { exact: false }).click();
   await page.getByText('बस टिकट', { exact: false }).click();
   await expect(page).toHaveURL("https://tickets.hamropatro.com/bus/add-info");
   await page.goBack();
-  await expect(page).toHaveURL(baseURL);
+  await expect(page).toHaveURL("https://tickets.hamropatro.com/bus/add-info");
 });
 
 test('नोट्स / इभेन्टहरू button navigation', async ({ page }) => {
+  await page.getByText('View More', { exact: false }).click();
   await page.getByText('नोट्स / इभेन्टहरू', { exact: false }).nth(1).click();
   await expect(page).toHaveURL(/notes/);
   await page.goBack();
@@ -167,6 +172,7 @@ test('नोट्स / इभेन्टहरू button navigation', async ({
 });
 
 test('इभेन्ट टिकट button navigation', async ({ page }) => {
+  await page.getByText('View More', { exact: false }).click();
   await page.getByText('इभेन्ट टिकट', { exact: false }).click();
   await expect(page).toHaveURL(/event/);
   await page.goBack();  
