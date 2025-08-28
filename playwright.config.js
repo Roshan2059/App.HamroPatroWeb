@@ -14,10 +14,10 @@ import { defineConfig, devices } from "@playwright/test";
  */
 export default defineConfig({
   // Sets the default test timeout to 60 seconds (60000 milliseconds)
-  timeout: 120000, 
+  timeout: 60000, 
     
   expect: {
-    timeout: 30000 // default timeout for expect()
+    timeout: 20000 // default timeout for expect()
   },
 
   testDir: "./tests",
