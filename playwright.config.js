@@ -16,6 +16,10 @@ export default defineConfig({
   // Sets the default test timeout to 60 seconds (60000 milliseconds)
   timeout: 120000, 
     
+  expect: {
+    timeout: 30000 // default timeout for expect()
+  },
+
   testDir: "./tests",
   /* Run tests in files in parallel */
   fullyParallel: true,
