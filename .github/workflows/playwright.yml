@@ -2,9 +2,8 @@ name: Playwright Tests
 
 on:
   push:
-    branches: [ main, NavigationLinkAndContentAssertionTest ]
-  pull_request:
-    branches: [ main, NavigationLinkAndContentAssertionTest ]
+    branches: 
+      - NavigationLinkAndContentAssertionTest
   schedule:
     # 8:00 AM NPT (02:15 UTC)
     - cron: "15 2 * * 1-5"
