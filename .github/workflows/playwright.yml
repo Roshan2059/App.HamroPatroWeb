@@ -3,7 +3,7 @@ name: Playwright Tests
 on:
   push:
     branches: 
-      - NavigationLinkAndContentAssertionTest
+      - main
   schedule:
     # 8:00 AM NPT (02:15 UTC)
     - cron: "15 2 * * 1-5"
@@ -14,7 +14,7 @@ on:
 
 jobs:
   test:
-    if: github.ref == 'refs/heads/NavigationLinkAndContentAssertionTest'
+    if: github.ref == 'refs/heads/main'
     timeout-minutes: 120
     runs-on: ubuntu-latest
 
