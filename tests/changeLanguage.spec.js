@@ -9,5 +9,9 @@ test('changeLanguageTest', async ({ page }) => {
   await page.getByRole('button', { name: 'English' }).click();
   // await page.getByRole('button', { name: 'Membership' }).click();
   await expect(page.getByRole('button', { name: 'Membership' })).toBeVisible();
-  await page.waitForTimeout(2000);
+  if (await page.getByRole('button', { name: 'Membership' }).isVisible()) {
+    console.log("✅ Test Passed: Membership button is visible and content change to english.");
+  } else {
+    console.log("❌ Test Failed: Membership button is not visible. Content not changed to Nepali");
+  }
 });
