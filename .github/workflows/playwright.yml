@@ -1,23 +1,16 @@
 name: Playwright Tests
-
 on:
   push:
     branches: 
       - main
   schedule:
-    # 8:00 AM NPT (02:15 UTC)
-    - cron: "15 2 * * 1-5"
-    # 12:00 PM NPT (06:15 UTC)
-    - cron: "15 6 * * 1-5"
-    # 4:00 PM NPT (10:15 UTC)
-    - cron: "15 10 * * 1-5"
+    - cron: "15 2 * * 1-5"  # Runs Mon-Fri at 02:15 UTC (08:00 NPT)
 
 jobs:
   test:
     if: github.ref == 'refs/heads/main'
     timeout-minutes: 120
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
