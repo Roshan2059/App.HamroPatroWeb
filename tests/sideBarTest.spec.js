@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { log } from 'console';
 const finalUrl = 'https://app.hamropatro.com/';
 
 test.beforeEach(async ({ page }) => {
@@ -143,6 +144,107 @@ test('Navigate to शेयर बजार', async ({ page }) => {
     console.log("Test passed: Successfully navigated to: " + page.url());
   }else{
     throw new Error('URL did not match expected URL and the url was: ' + page.url());
+  }
+  await page.goBack();
+  await expect(page).toHaveURL(finalUrl);
+  if (page.url() == finalUrl) {
+    console.log("Test passed: Successfully navigated back to: " + page.url());
+  }else{
+    throw new Error('URL did not match expected URL and the url was: ' + page.url());
+  }
+});
+
+test('navigate to पात्रो', async ({ page }) => {
+  const expectedUrl = "https://app.hamropatro.com/calendar?v=patro";
+  await page.getByRole('button', { name: 'जीवनशैली' }).click();
+  await page.getByRole('button', { name: 'पात्रो' }).first().click();
+  await expect(page.locator('#patro')).toContainText('आइ सोम मंगल बुध बिहि शुक्र शनि');
+  await expect(page).toHaveURL(expectedUrl);
+  if (page.url() == expectedUrl && page.locator('#patro').isVisible()) {
+    console.log("Test passed: Successfully navigated to: " + page.url());
+  }else{
+    throw new Error('URL did not match expected URL and the url was: ' + page.url());
+  }
+  await page.goBack();
+  await expect(page).toHaveURL(finalUrl);
+  if (page.url() == finalUrl) {
+    console.log("Test passed: Successfully navigated back to: " + page.url());
+  }else{
+    throw new Error('URL did not match expected URL and the url was: ' + page.url());
+  }
+});
+
+test('navigate to साइत', async ({ page }) => {
+  const possibleUrls = [
+    "https://app.hamropatro.com/sahit/2082",
+    "https://app.hamropatro.com/sahit/2081"
+  ];
+
+  const finalUrl = "https://app.hamropatro.com/"; // update if back navigation is different
+
+  // Navigate
+  await page.getByRole('button', { name: 'जीवनशैली' }).click();
+  await page.pause();
+  await page.getByRole('button', { name: 'साइत' }).first().click();
+
+  const currentUrl = page.url();
+
+  // Assert that current URL matches one of the possible options
+  expect(possibleUrls).toContain(currentUrl);
+
+  console.log("✅ Test passed: Successfully navigated to साइत: " + currentUrl);
+
+  // Go back
+  await page.goBack();
+  await expect(page).toHaveURL(finalUrl);
+
+  if (page.url() === finalUrl) {
+    console.log("✅ Test passed: Successfully navigated back to: " + page.url());
+  } else {
+    console.log('❌ URL mismatch after going back. Actual: ' + page.url());
+  }
+});
+
+test('navigate to मिति परिवर्तन', async ({ page }) => {
+  const possibleUrls = [
+    "https://app.hamropatro.com/converter",
+    "https://www.hamropatro.com/date-converter"
+  ];
+
+  const finalUrl = "https://app.hamropatro.com/"; // update this based on your app flow
+
+  // Navigate
+  await page.getByRole('button', { name: 'जीवनशैली' }).click();
+  await page.getByRole('button', { name: 'मिति परिवर्तन' }).first().click();
+
+  // Check URL matches one of the expected
+  const currentUrl = page.url();
+  expect(possibleUrls).toContain(currentUrl);
+
+  console.log("✅ Test passed: Successfully navigated to मिति परिवर्तन: " + currentUrl);
+
+  // Go back
+  await page.goBack();
+  await expect(page).toHaveURL(finalUrl);
+
+  if (page.url() === finalUrl) {
+    console.log("✅ Test passed: Successfully navigated back to: " + page.url());
+  } else {
+    throw new Error('❌ URL mismatch after going back. Actual: ' + page.url());
+  }
+});
+
+test('navigate to बिदाहरू', async ({ page }) => {
+  const expectedUrl = "https://app.hamropatro.com/events?breakout=y&v=0"; // replace if different
+  await page.getByRole('button', { name: 'जीवनशैली' }).click();
+  await page.getByRole('button', { name: 'बिदाहरू' }).first().click();
+
+  await expect(page).toHaveURL(expectedUrl);
+
+  if (page.url() === expectedUrl) {
+    console.log("✅ Test passed: Successfully navigated to बिदाहरू: " + page.url());
+  } else {
+    throw new Error('❌ बिदाहरू URL mismatch. Actual: ' + page.url());
   }
   await page.goBack();
   await expect(page).toHaveURL(finalUrl);
